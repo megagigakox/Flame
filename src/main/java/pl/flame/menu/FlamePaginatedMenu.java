@@ -3,6 +3,8 @@ package pl.flame.menu;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,13 +14,15 @@ import java.util.function.Consumer;
 public class FlamePaginatedMenu {
 
     private final FlameMenu templateMenu;
+
+    @Nullable
     private FlameMenu currentPage;
 
     private final Map<Integer, FlameMenu> pagesByNumbers;
     private final Map<FlameMenu, Integer> numbersByPages;
     private final Map<UUID, Integer> pageViewers;
 
-    public FlamePaginatedMenu(FlameMenu templateMenu) {
+    public FlamePaginatedMenu(@NotNull FlameMenu templateMenu) {
         this.templateMenu = templateMenu;
         this.pagesByNumbers = new HashMap<>();
         this.numbersByPages = new HashMap<>();
@@ -26,7 +30,7 @@ public class FlamePaginatedMenu {
         addPage(this.templateMenu.clone(), 0);
     }
 
-    void addPage(FlameMenu flameMenu, int page) {
+    void addPage(@NotNull FlameMenu flameMenu, int page) {
         this.pagesByNumbers.put(page, flameMenu);
         this.numbersByPages.put(flameMenu, page);
     }
@@ -63,6 +67,7 @@ public class FlamePaginatedMenu {
         });
     }
 
+    @Nullable
     private FlameMenu getLeastFilled() {
         for (int i = 0; i < this.pagesByNumbers.size(); i++) {
             FlameMenu flameMenu = this.pagesByNumbers.get(i);
@@ -82,7 +87,7 @@ public class FlamePaginatedMenu {
         }
     }
 
-    public void addItem(ItemStack itemStack, Consumer<InventoryClickEvent> eventConsumer) {
+    public void addItem(@NotNull ItemStack itemStack, @NotNull Consumer<InventoryClickEvent> eventConsumer) {
         FlameMenu flameMenu;
 
         if (this.currentPage == null) {
@@ -103,7 +108,7 @@ public class FlamePaginatedMenu {
         flameMenu.setItem(flameMenu.getLastFreeSlot(), itemStack, eventConsumer);
     }
 
-    public void open(HumanEntity humanEntity, int page) {
+    public void open(@NotNull HumanEntity humanEntity, int page) {
         FlameMenu menu = this.pagesByNumbers.get(page);
         if (menu == null) {
             open(humanEntity);
@@ -115,7 +120,7 @@ public class FlamePaginatedMenu {
         menu.open(humanEntity);
     }
 
-    public void open(HumanEntity humanEntity) {
+    public void open(@NotNull HumanEntity humanEntity) {
         FlameMenu firstPage = this.pagesByNumbers.get(0);
         this.pageViewers.put(humanEntity.getUniqueId(), 0);
         refreshPagesTitle();

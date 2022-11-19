@@ -27,7 +27,7 @@ public class FlameMenu implements InventoryHolder {
     @Setter(value = AccessLevel.PRIVATE)
     private Map<Integer, Consumer<InventoryClickEvent>> eventBySlotMap;
 
-    public FlameMenu(String title, int rows, boolean disableAllInteractions) {
+    public FlameMenu(@NotNull String title, int rows, boolean disableAllInteractions) {
         this.title = title;
         this.rows = rows;
         this.disableAllInteractions = disableAllInteractions;
@@ -43,11 +43,11 @@ public class FlameMenu implements InventoryHolder {
         return flameMenu;
     }
 
-    public void addItem(ItemStack itemStack) {
+    public void addItem(@NotNull ItemStack itemStack) {
         this.inventory.addItem(itemStack);
     }
 
-    public void addItem(ItemStack itemStack, Consumer<InventoryClickEvent> eventConsumer) {
+    public void addItem(@NotNull ItemStack itemStack, @NotNull Consumer<InventoryClickEvent> eventConsumer) {
         for (int slot = 0; slot < this.rows * 9 - 1; slot++) {
             if (this.inventory.getItem(slot) == null) {
                 this.inventory.setItem(slot, itemStack);
@@ -56,31 +56,37 @@ public class FlameMenu implements InventoryHolder {
         }
     }
 
-    public void setItem(int slot, ItemStack itemStack) {
+    public void setItem(int slot, @NotNull ItemStack itemStack) {
         this.inventory.setItem(slot, itemStack);
     }
 
-    public void setItem(int row, int column, ItemStack itemStack) {
+    public void setItem(int row, int column, @NotNull ItemStack itemStack) {
         this.inventory.setItem((column + (row - 1) * 9) - 1, itemStack);
     }
 
-    public void setItem(List<Integer> slots, ItemStack itemStack) {
+    public void setItem(@NotNull List<Integer> slots, @NotNull ItemStack itemStack) {
         slots.forEach(slot -> setItem(slot, itemStack));
     }
 
-
-    public void setItem(int slot, ItemStack itemStack, Consumer<InventoryClickEvent> eventConsumer) {
+    public void setItem(int slot, @NotNull ItemStack itemStack, @NotNull Consumer<InventoryClickEvent> eventConsumer) {
         this.inventory.setItem(slot, itemStack);
         this.eventBySlotMap.put(slot, eventConsumer);
     }
 
-    public void setItem(int row, int column, ItemStack itemStack, Consumer<InventoryClickEvent> eventConsumer) {
+    public void setItem(int row,
+                        int column,
+                        @NotNull ItemStack itemStack,
+                        @NotNull Consumer<InventoryClickEvent> eventConsumer
+    ) {
         int slot = (column + (row - 1) * 9) - 1;
         this.inventory.setItem(slot, itemStack);
         this.eventBySlotMap.put(slot, eventConsumer);
     }
 
-    public void setItem(List<Integer> slots, ItemStack itemStack, Consumer<InventoryClickEvent> eventConsumer) {
+    public void setItem(@NotNull List<Integer> slots,
+                        @NotNull ItemStack itemStack,
+                        @NotNull Consumer<InventoryClickEvent> eventConsumer
+    ) {
         slots.forEach(slot -> setItem(slot, itemStack, eventConsumer));
     }
 
@@ -90,19 +96,18 @@ public class FlameMenu implements InventoryHolder {
             if (this.inventory.getItem(i) == null) {
                 return i;
             }
-
         }
 
         return freeSlot;
     }
 
-    public void updateTitle(String title) {
+    public void updateTitle(@NotNull String title) {
         Inventory updated = Bukkit.createInventory(this, this.rows * 9, title);
         updated.setContents(this.inventory.getContents());
         this.inventory = updated;
     }
 
-    public void open(HumanEntity humanEntity) {
+    public void open(@NotNull HumanEntity humanEntity) {
         humanEntity.openInventory(this.inventory);
     }
 
@@ -110,7 +115,7 @@ public class FlameMenu implements InventoryHolder {
         return this.eventBySlotMap.getOrDefault(slot, event -> event.setCancelled(true));
     }
 
-    void addEventToSlot(int slot, Consumer<InventoryClickEvent> eventConsumer) {
+    void addEventToSlot(int slot, @NotNull Consumer<InventoryClickEvent> eventConsumer) {
         this.eventBySlotMap.put(slot, eventConsumer);
     }
 

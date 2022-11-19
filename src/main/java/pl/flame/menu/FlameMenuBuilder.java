@@ -1,13 +1,14 @@
 package pl.flame.menu;
 
 import net.kyori.adventure.text.Component;
+import org.jetbrains.annotations.NotNull;
 
 public final class FlameMenuBuilder {
     private String title;
     private int rows;
     private boolean disableAllInteractions = false;
 
-    public FlameMenuBuilder title(String title) {
+    public FlameMenuBuilder title(@NotNull String title) {
         this.title = title;
         return this;
     }

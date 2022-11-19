@@ -1,12 +1,13 @@
 package pl.flame.menu;
 
 import org.bukkit.plugin.Plugin;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Consumer;
 
 public class FlameMenuProvider {
 
-    public static FlameMenuProvider newInstance(Plugin plugin) {
+    public static FlameMenuProvider newInstance(@NotNull Plugin plugin) {
         plugin.getServer()
                 .getPluginManager()
                 .registerEvents(new FlameMenuListener(), plugin);
@@ -18,7 +19,7 @@ public class FlameMenuProvider {
         return new FlameMenuBuilder();
     }
 
-    public FlamePaginatedMenu paginated(FlameMenu flameMenu, Consumer<FlameMenu> flameMenuConsumer) {
+    public FlamePaginatedMenu paginated(@NotNull FlameMenu flameMenu, @NotNull Consumer<FlameMenu> flameMenuConsumer) {
         flameMenuConsumer.accept(flameMenu);
         return new FlamePaginatedMenu(flameMenu);
     }
