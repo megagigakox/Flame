@@ -81,10 +81,7 @@ public class FlameMenu implements InventoryHolder {
     }
 
     public void setItem(List<Integer> slots, ItemStack itemStack, Consumer<InventoryClickEvent> eventConsumer) {
-        slots.forEach(slot -> {
-            setItem(slot, itemStack);
-            this.eventBySlotMap.put(slot, eventConsumer);
-        });
+        slots.forEach(slot -> setItem(slot, itemStack, eventConsumer));
     }
 
     int getLastFreeSlot() {
