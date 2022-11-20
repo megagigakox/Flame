@@ -5,15 +5,13 @@ import lombok.Setter;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.HumanEntity;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 public class FlameMenu implements InventoryHolder {
 
@@ -70,7 +68,6 @@ public class FlameMenu implements InventoryHolder {
     }
 
     public void crowdInventory() {
-
         for (Map.Entry<Integer, FlameItem> entry : this.menuItems.entrySet()) {
             this.inventory.setItem(entry.getKey(), entry.getValue().getItemStack());
         }
@@ -87,8 +84,12 @@ public class FlameMenu implements InventoryHolder {
         return freeSlot;
     }
 
-    public void update(HumanEntity humanEntity) {
-
+    public void update() {
+        this.inventory.clear();
+        crowdInventory();
+        for (HumanEntity viewer : this.inventory.getViewers()) {
+            ((Player) viewer).updateInventory();
+        }
     }
 
     public void updateTitle(@NotNull String title) {
