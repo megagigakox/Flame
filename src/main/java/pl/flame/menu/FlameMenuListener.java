@@ -13,22 +13,24 @@ public class FlameMenuListener implements Listener {
     public void onClick(InventoryClickEvent event) {
 
         InventoryHolder inventoryHolder = event.getInventory().getHolder();
-        if (inventoryHolder instanceof FlameMenu bukkitMenu) {
+        if (inventoryHolder instanceof FlameMenu flameMenu) {
 
-            if (bukkitMenu.isDisableAllInteractions()) {
+            if (flameMenu.isDisableAllInteractions()) {
                 event.setCancelled(true);
             }
 
             int slot = event.getRawSlot();
-            if (event.getCurrentItem() == null) {
-                return;
-            }
+            flameMenu.getItemBySlot(slot).ifPresentOrElse(flameItem -> {
 
-            Consumer<InventoryClickEvent> eventConsumer = bukkitMenu.getEventBySlot(slot);
-            eventConsumer.accept(event);
+                Consumer<InventoryClickEvent> eventConsumer = flameItem.getEventConsumer();
+                if (eventConsumer == null) {
+                    return;
+                }
+
+                eventConsumer.accept(event);
+
+            }, () -> event.setCancelled(true));
 
         }
-
     }
-
 }

@@ -9,15 +9,15 @@ public class FlameMenuFiller {
 
     private final FlameMenu menu;
 
-    public void fill(@NotNull ItemStack itemStack) {
+    public void fill(@NotNull FlameItem flameItem) {
         int size = this.menu.getRows() * 9;
         for (int i = 0; i < size - 1; i++) {
-            this.menu.setItem(i, itemStack);
+            this.menu.setItem(i, flameItem);
         }
 
     }
 
-    public void fillBorder(@NotNull ItemStack itemStack) {
+    public void fillBorder(@NotNull FlameItem flameItem) {
         int rows = this.menu.getRows();
         if (rows <= 2) {
             return;
@@ -25,7 +25,7 @@ public class FlameMenuFiller {
 
         for (int i = 0; i < rows * 9; i++) {
             if ((i <= 8) || (i >= (rows * 9) - 8) && (i <= (rows * 9) - 2) || i % 9 == 0 || i % 9 == 8) {
-                this.menu.setItem(i, itemStack);
+                this.menu.setItem(i, flameItem);
             }
 
         }

@@ -21,4 +21,5 @@ public class Flame {
         return new FlamePaginatedMenu(flameMenu);
     }
 
+
 }

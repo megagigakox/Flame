@@ -1,6 +1,5 @@
 package pl.flame.menu;
 
-import net.kyori.adventure.text.Component;
 import org.jetbrains.annotations.NotNull;
 
 public final class FlameMenuBuilder {
