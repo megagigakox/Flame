@@ -7,7 +7,6 @@ import pl.flame.menu.FlamePaginatedMenu;
 
 public class TestMenu {
 
-
     private void classic(Player player) {
         FlameMenu flameMenu = Flame.classic()
                 .rows(6)
