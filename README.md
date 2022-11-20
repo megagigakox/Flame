@@ -22,6 +22,7 @@ FlameMenu menu = Flame.classic()
 //Now we can add border to this template menu.
 menu.getFiller().fillBorder(new FlameItem(new ItemStack(Material.BLACK_STAINED_GLASS_PANE)));
 
+//Create new Paginated menu
 FlamePaginatedMenu paginatedMenu = Flame.paginated(menu);
 
 //Lets set next and previous items!
