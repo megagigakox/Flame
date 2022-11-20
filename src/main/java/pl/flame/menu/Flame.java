@@ -5,21 +5,19 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Consumer;
 
-public class FlameMenuProvider {
+public class Flame {
 
-    public static FlameMenuProvider newInstance(@NotNull Plugin plugin) {
+    public static void register(@NotNull Plugin plugin) {
         plugin.getServer()
                 .getPluginManager()
                 .registerEvents(new FlameMenuListener(), plugin);
-
-        return new FlameMenuProvider();
     }
 
-    public FlameMenuBuilder classic() {
+    public static FlameMenuBuilder classic() {
         return new FlameMenuBuilder();
     }
 
-    public FlamePaginatedMenu paginated(@NotNull FlameMenu flameMenu, @NotNull Consumer<FlameMenu> flameMenuConsumer) {
+    public static FlamePaginatedMenu paginated(@NotNull FlameMenu flameMenu, @NotNull Consumer<FlameMenu> flameMenuConsumer) {
         flameMenuConsumer.accept(flameMenu);
         return new FlamePaginatedMenu(flameMenu);
     }

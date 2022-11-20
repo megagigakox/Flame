@@ -69,6 +69,7 @@ public class FlamePaginatedMenu {
 
     @Nullable
     private FlameMenu getLeastFilled() {
+
         for (int i = 0; i < this.pagesByNumbers.size(); i++) {
             FlameMenu flameMenu = this.pagesByNumbers.get(i);
             if (flameMenu != null) {
@@ -80,11 +81,13 @@ public class FlamePaginatedMenu {
     }
 
     public void refreshPagesTitle() {
-        for (FlameMenu flameMenu : this.pagesByNumbers.values()) {
-            flameMenu.updateTitle(flameMenu.getTitle()
-                    .replace("{PAGE}", String.valueOf(this.numbersByPages.get(flameMenu) + 1))
-                    .replace("{MAX_PAGE}", String.valueOf(this.pagesByNumbers.size())));
-        }
+        this.pagesByNumbers.values().forEach(flameMenu -> flameMenu.updateTitle(flameMenu.getTitle()
+                .replace("{PAGE}", String.valueOf(this.numbersByPages.get(flameMenu) + 1))
+                .replace("{MAX_PAGE}", String.valueOf(this.pagesByNumbers.size()))));
+    }
+
+    public void addItem(@NotNull ItemStack itemStack) {
+        addItem(itemStack, event -> {});
     }
 
     public void addItem(@NotNull ItemStack itemStack, @NotNull Consumer<InventoryClickEvent> eventConsumer) {
