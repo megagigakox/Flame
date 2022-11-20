@@ -17,8 +17,7 @@ public class Flame {
         return new FlameMenuBuilder();
     }
 
-    public static FlamePaginatedMenu paginated(@NotNull FlameMenu flameMenu, @NotNull Consumer<FlameMenu> flameMenuConsumer) {
-        flameMenuConsumer.accept(flameMenu);
+    public static FlamePaginatedMenu paginated(@NotNull FlameMenu flameMenu) {
         return new FlamePaginatedMenu(flameMenu);
     }
 

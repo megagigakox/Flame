@@ -26,17 +26,12 @@ public class TestMenu {
                 .title("Page: {PAGE}/{MAX_PAGE}")
                 .rows(6)
                 .disableAllInteractions()
-                .build(),
-                flameMenu -> {
+                .build());
 
-            flameMenu.getFiller().fill(new ItemStack(Material.BLACK_STAINED_GLASS_PANE));
-            flameMenu.setItem(47, new ItemStack(Material.STONE_BUTTON));
-            flameMenu.setItem(51, new ItemStack(Material.STONE_BUTTON));
+        flamePaginatedMenu.getTemplate().getFiller().fillBorder(new ItemStack(Material.BLACK_STAINED_GLASS_PANE));
 
-        });
-
-        flamePaginatedMenu.nextPage(51);
-        flamePaginatedMenu.previousPage(47);
+        flamePaginatedMenu.previousPage(47, new ItemStack(Material.STONE_BUTTON));
+        flamePaginatedMenu.nextPage(51, new ItemStack(Material.STONE_BUTTON));
 
         for (int i = 0; i < 40; i++) {
             flamePaginatedMenu.addItem(new ItemStack(Material.DIRT), event -> player.sendMessage("clicked item"));
