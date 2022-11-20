@@ -24,7 +24,7 @@ menu.getFiller().fillBorder(new FlameItem(new ItemStack(Material.BLACK_STAINED_G
 
 FlamePaginatedMenu paginatedMenu = Flame.paginated(menu);
 
-#Lets set next and previous items!
+//Lets set next and previous items!
 paginatedMenu.nextPage(51, new ItemStack(Material.STONE_BUTTON));
 paginatedMenu.previousPage(47, new ItemStack(Material.STONE_BUTTON));
 
