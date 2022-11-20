@@ -13,10 +13,10 @@ public class TestMenu {
                 .build();
 
         flameMenu.addItem(FlameItemBuilder.of(Material.DIRT)
-                .buildAsFlameItem(event -> player.sendMessage("dirt")));
+                .buildAsFlame(event -> player.sendMessage("dirt")));
 
         flameMenu.setItem(1, FlameItemBuilder.of(new ItemStack(Material.COBBLESTONE))
-                .buildAsFlameItem(event -> player.sendMessage("cobblestone")));
+                .buildAsFlame(event -> player.sendMessage("cobblestone")));
 
         flameMenu.open(player);
     }
@@ -31,14 +31,14 @@ public class TestMenu {
         flamePaginatedMenu.getTemplate()
                 .getFiller()
                 .fillBorder(FlameItemBuilder.of(Material.BLACK_STAINED_GLASS_PANE)
-                        .buildAsFlameItem());
+                        .buildAsFlame());
 
         flamePaginatedMenu.previousPage(47, new ItemStack(Material.STONE_BUTTON));
         flamePaginatedMenu.nextPage(51, new ItemStack(Material.STONE_BUTTON));
 
         for (int i = 0; i < 40; i++) {
             flamePaginatedMenu.addItem(FlameItemBuilder.of(Material.COBBLESTONE)
-                    .buildAsFlameItem(event -> player.sendMessage("cobblestone")));
+                    .buildAsFlame(event -> player.sendMessage("cobblestone")));
         }
 
         flamePaginatedMenu.open(player);

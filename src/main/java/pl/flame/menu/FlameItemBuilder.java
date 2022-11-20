@@ -129,11 +129,11 @@ public class FlameItemBuilder {
         return this.itemStack;
     }
 
-    public FlameItem buildAsFlameItem() {
+    public FlameItem buildAsFlame() {
         return new FlameItem(this.itemStack);
     }
 
-    public FlameItem buildAsFlameItem(Consumer<InventoryClickEvent> eventConsumer) {
+    public FlameItem buildAsFlame(Consumer<InventoryClickEvent> eventConsumer) {
         return new FlameItem(this.itemStack, eventConsumer);
 
     }

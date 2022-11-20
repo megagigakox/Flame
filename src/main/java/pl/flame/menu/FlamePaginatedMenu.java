@@ -35,7 +35,7 @@ public class FlamePaginatedMenu {
     }
 
     public void nextPage(int slot, @NotNull ItemStack itemStack) {
-        this.template.setItem(slot, FlameItemBuilder.of(itemStack).buildAsFlameItem(event -> {
+        this.template.setItem(slot, FlameItemBuilder.of(itemStack).buildAsFlame(event -> {
 
             event.setCancelled(true);
 
@@ -53,7 +53,7 @@ public class FlamePaginatedMenu {
     }
 
     public void previousPage(int slot, @NotNull ItemStack itemStack) {
-        this.template.setItem(slot, FlameItemBuilder.of(itemStack).buildAsFlameItem(event -> {
+        this.template.setItem(slot, FlameItemBuilder.of(itemStack).buildAsFlame(event -> {
             event.setCancelled(true);
 
             HumanEntity humanEntity = event.getWhoClicked();
