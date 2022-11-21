@@ -1,37 +1,79 @@
 # Flame
 Simple framework to creating inventories in a simple way.
 
+## Register flame
+
+With MiniMessage:
+```
+//put this code on your onEnable method.
+Flame.register(yourPluginInstance, new MiniMessageTextFormatter());
+```
+
+With legacy:
+```
+//put this code on your onEnable method.
+Flame.register(yourPluginInstance, new LegacyTextFormatter());
+```
+
 #### Classic menu
 ```java
-FlameMenu menu = Flame.classic()
-    .title("Example menu")
-    .rows(3)
-    .disableAllInteractions()
-    .build();
+        FlameMenu flameMenu = Flame.classic()
+                .rows(6)
+                .title("&cExample Menu")
+                .disableInteractions()
+                .build();
+
+        flameMenu.addItem(new FlameItem(new ItemStack(Material.DIRT)));
+
+        //with flamebuilder
+        flameMenu.addItem(FlameItemBuilder.of(Material.DIRT)
+                .buildAsFlame(event -> player.sendMessage("dirt")));
+
+        flameMenu.setItem(1, FlameItemBuilder.of(new ItemStack(Material.COBBLESTONE))
+                .buildAsFlame(event -> player.sendMessage("Click")));
+
+        flameMenu.setItem(1, 5, FlameItemBuilder.of(new ItemStack(Material.COBBLESTONE))
+                .buildAsFlame(event -> player.sendMessage("Click")));
+
+        flameMenu.open(player);
 ```
 
 #### Paginated menu
 ```java
 //First we need to create a template for our pages.
-FlameMenu menu = Flame.classic()
-    .title("Paginated menu {PAGE}/{MAX_PAGE}")
-    .rows(6)
-    .disableAllInteractions()
-    .build();
+        FlamePaginatedMenu flamePaginatedMenu = Flame.paginated()
+                .template(Flame.classic()
+                    .title("&cPage: &7{PAGE}&8/&7{MAX_PAGE}")
+                    .rows(6)
+                    .disableInteractions()
+                    .build())
+                .nextPageDoesNotExistMessage("&cNext page doesn't exist!")
+                .previousPageDoesNotExistMessage("&cPrevious page doesn't exist!")
+                .build();
 
-//Now we can add border to this template menu.
-menu.getFiller().fillBorder(new FlameItem(new ItemStack(Material.BLACK_STAINED_GLASS_PANE)));
+        flamePaginatedMenu.getTemplate()
+                .getFiller()
+                .fillBorder(FlameItemBuilder.of(Material.BLACK_STAINED_GLASS_PANE)
+                        .buildAsFlame());
 
-//Create new Paginated menu
-FlamePaginatedMenu paginatedMenu = Flame.paginated(menu);
+        flamePaginatedMenu.previousPage(47, new ItemStack(Material.STONE_BUTTON));
+        flamePaginatedMenu.nextPage(51, new ItemStack(Material.STONE_BUTTON));
 
-//Lets set next and previous items!
-paginatedMenu.nextPage(51, new ItemStack(Material.STONE_BUTTON));
-paginatedMenu.previousPage(47, new ItemStack(Material.STONE_BUTTON));
 
-//Now lets add items!
-for (int i = 0; i < 35; i++) {
-    paginatedMenu.addItem(new FlameItem(new ItemStack(Material.COBBLESTONE), event -> player.sendMessage("Cobblestone.")));
-}
+        List<String> formattedLore = Flame.textBuilder()
+                .text(
+                        "&cAmazing text builder!",
+                        "&aYour placeholder here: &b{EXAMPLE_PLACEHOLDER}"
+                )
+                .placeholder("{EXAMPLE_PLACEHOLDER}", "Nice placeholder!")
+                .build();
+
+        for (int i = 0; i < 40; i++) {
+            flamePaginatedMenu.addItem(FlameItemBuilder.of(Material.COBBLESTONE)
+                    .lore(formattedLore)
+                    .buildAsFlame(event -> player.sendMessage(Flame.textFormatter().parse("&7Cobblestone"))));
+        }
+
+        flamePaginatedMenu.open(player);
 
 ```
