@@ -1,11 +1,11 @@
-package pl.flame.menu.text.formatter.impl;
+package pl.flame.framework.text.formatter.impl;
 
 import com.google.common.base.Strings;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.jetbrains.annotations.NotNull;
-import pl.flame.menu.text.processor.FlameTextLegacyProcessor;
-import pl.flame.menu.text.formatter.FlameTextFormatter;
+import pl.flame.framework.text.processor.FlameTextLegacyProcessor;
+import pl.flame.framework.text.formatter.FlameTextFormatter;
 
 import java.util.ArrayList;
 import java.util.List;

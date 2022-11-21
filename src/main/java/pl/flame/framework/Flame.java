@@ -1,10 +1,10 @@
-package pl.flame.menu;
+package pl.flame.framework;
 
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
-import pl.flame.menu.menu.*;
-import pl.flame.menu.text.FlameTextBuilder;
-import pl.flame.menu.text.formatter.FlameTextFormatter;
+import pl.flame.framework.menu.*;
+import pl.flame.framework.text.FlameTextBuilder;
+import pl.flame.framework.text.formatter.FlameTextFormatter;
 
 public class Flame {
 

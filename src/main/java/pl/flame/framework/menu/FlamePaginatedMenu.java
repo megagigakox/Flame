@@ -1,4 +1,4 @@
-package pl.flame.menu.menu;
+package pl.flame.framework.menu;
 
 import lombok.Getter;
 import net.kyori.adventure.text.Component;
@@ -7,7 +7,7 @@ import org.bukkit.entity.HumanEntity;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import pl.flame.menu.Flame;
+import pl.flame.framework.Flame;
 
 import java.util.HashMap;
 import java.util.Map;

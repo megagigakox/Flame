@@ -1,8 +1,8 @@
-package pl.flame.menu.text.processor;
+package pl.flame.framework.text.processor;
 
 import lombok.RequiredArgsConstructor;
 import net.kyori.adventure.text.Component;
-import pl.flame.menu.text.formatter.impl.LegacyTextFormatter;
+import pl.flame.framework.text.formatter.impl.LegacyTextFormatter;
 
 import java.util.function.UnaryOperator;
 import java.util.regex.Pattern;

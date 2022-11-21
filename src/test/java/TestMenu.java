@@ -1,14 +1,11 @@
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.plugin.java.JavaPlugin;
-import pl.flame.menu.*;
-import pl.flame.menu.menu.FlameItem;
-import pl.flame.menu.menu.FlameItemBuilder;
-import pl.flame.menu.menu.FlameMenu;
-import pl.flame.menu.menu.FlamePaginatedMenu;
-import pl.flame.menu.text.formatter.impl.LegacyTextFormatter;
-import pl.flame.menu.text.formatter.impl.MiniMessageTextFormatter;
+import pl.flame.framework.*;
+import pl.flame.framework.menu.FlameItem;
+import pl.flame.framework.menu.FlameItemBuilder;
+import pl.flame.framework.menu.FlameMenu;
+import pl.flame.framework.menu.FlamePaginatedMenu;
 
 import java.util.List;
 

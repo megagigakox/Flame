@@ -1,4 +1,4 @@
-package pl.flame.menu.menu;
+package pl.flame.framework.menu;
 
 import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.NotNull;

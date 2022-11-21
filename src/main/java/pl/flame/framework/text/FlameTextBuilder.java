@@ -1,8 +1,8 @@
-package pl.flame.menu.text;
+package pl.flame.framework.text;
 
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
-import pl.flame.menu.text.formatter.FlameTextFormatter;
+import pl.flame.framework.text.formatter.FlameTextFormatter;
 
 import java.util.*;
 

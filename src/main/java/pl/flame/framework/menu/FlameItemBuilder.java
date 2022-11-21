@@ -1,4 +1,4 @@
-package pl.flame.menu.menu;
+package pl.flame.framework.menu;
 
 import lombok.Getter;
 import net.kyori.adventure.text.Component;
@@ -9,7 +9,7 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.jetbrains.annotations.NotNull;
-import pl.flame.menu.text.formatter.FlameTextFormatter;
+import pl.flame.framework.text.formatter.FlameTextFormatter;
 
 import java.util.Arrays;
 import java.util.Collections;

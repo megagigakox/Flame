@@ -1,8 +1,8 @@
-package pl.flame.menu.menu;
+package pl.flame.framework.menu;
 
 import net.kyori.adventure.text.Component;
 import org.jetbrains.annotations.NotNull;
-import pl.flame.menu.Flame;
+import pl.flame.framework.Flame;
 
 
 public final class FlameMenuBuilder {

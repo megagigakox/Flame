@@ -1,4 +1,4 @@
-package pl.flame.menu.menu;
+package pl.flame.framework.menu;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

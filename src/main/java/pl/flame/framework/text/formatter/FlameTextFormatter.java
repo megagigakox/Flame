@@ -1,4 +1,4 @@
-package pl.flame.menu.text.formatter;
+package pl.flame.framework.text.formatter;
 
 import net.kyori.adventure.text.Component;
 import org.jetbrains.annotations.NotNull;
