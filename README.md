@@ -5,13 +5,13 @@ Simple framework to creating inventories in a simple way.
 
 With MiniMessage:
 ```java
-//put this code on your onEnable method.
+//put this code inside onEnable method.
 Flame.register(yourPluginInstance, new MiniMessageTextFormatter());
 ```
 
 With legacy:
 ```java
-//put this code on your onEnable method.
+//put this code inside onEnable method.
 Flame.register(yourPluginInstance, new LegacyTextFormatter());
 ```
 
