@@ -41,7 +41,7 @@ Flame.register(yourPluginInstance, new LegacyTextFormatter());
 #### Paginated menu
 ```java
 //First we need to create a template for our pages.
-        FlamePaginatedMenu flamePaginatedMenu = Flame.paginated()
+FlamePaginatedMenu flamePaginatedMenu = Flame.paginated()
                 .template(Flame.classic()
                     .title("&cPage: &7{PAGE}&8/&7{MAX_PAGE}")
                     .rows(6)
@@ -56,8 +56,12 @@ Flame.register(yourPluginInstance, new LegacyTextFormatter());
                 .fillBorder(FlameItemBuilder.of(Material.BLACK_STAINED_GLASS_PANE)
                         .buildAsFlame());
 
-        flamePaginatedMenu.previousPage(47, new ItemStack(Material.STONE_BUTTON));
-        flamePaginatedMenu.nextPage(51, new ItemStack(Material.STONE_BUTTON));
+        flamePaginatedMenu.previousPage(47, FlameItemBuilder.of(Material.STONE_BUTTON)
+                .name("&cPrevious page")
+                .buildAsFlame());
+        flamePaginatedMenu.nextPage(51, FlameItemBuilder.of(Material.STONE_BUTTON)
+                .name("&aNext page")
+                .buildAsFlame());
 
 
         List<String> formattedLore = Flame.textBuilder()
