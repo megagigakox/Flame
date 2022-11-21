@@ -1,40 +1,40 @@
-package pl.flame.menu;
+package pl.flame.menu.text.formatter.impl;
 
+import com.google.common.base.Strings;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.TextDecoration;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
+import org.jetbrains.annotations.NotNull;
+import pl.flame.menu.text.formatter.FlameTextFormatter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-final class FlameText {
+public class LegacyTextFormatter implements FlameTextFormatter {
 
-    private FlameText() {
-
-    }
-
-    public static final TextComponent RESET = Component.text()
+    private static final TextComponent RESET = Component.text()
             .decoration(TextDecoration.ITALIC, false)
             .build();
 
-    private static final LegacyComponentSerializer LEGACY_COMPONENT_SERIALIZER = LegacyComponentSerializer.builder()
+    private final static LegacyComponentSerializer LEGACY_COMPONENT_SERIALIZER = LegacyComponentSerializer.builder()
             .character('&')
             .hexColors()
             .build();
 
-    public static Component parse(String text) {
-        if (text == null || text.isEmpty()) {
+    @Override
+    public Component parse(@NotNull String text) {
+        if (Strings.isNullOrEmpty(text)) {
             return Component.empty();
         }
 
         return RESET.append(LEGACY_COMPONENT_SERIALIZER.deserialize(text));
     }
 
-    public static List<Component> parse(List<String> text) {
+    @Override
+    public List<Component> parse(@NotNull List<String> text) {
         List<Component> list = new ArrayList<>();
         text.forEach(it -> list.add(parse(it)));
         return list;
     }
-
 }

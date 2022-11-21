@@ -1,7 +1,6 @@
-package pl.flame.menu;
+package pl.flame.menu.menu;
 
 import lombok.RequiredArgsConstructor;
-import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 @RequiredArgsConstructor

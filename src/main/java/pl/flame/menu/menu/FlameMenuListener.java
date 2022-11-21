@@ -1,4 +1,4 @@
-package pl.flame.menu;
+package pl.flame.menu.menu;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -15,7 +15,7 @@ public class FlameMenuListener implements Listener {
         InventoryHolder inventoryHolder = event.getInventory().getHolder();
         if (inventoryHolder instanceof FlameMenu flameMenu) {
 
-            if (flameMenu.isDisableAllInteractions()) {
+            if (flameMenu.isDisableInteractions()) {
                 event.setCancelled(true);
             }
 

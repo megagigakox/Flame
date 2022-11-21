@@ -1,23 +1,23 @@
-package pl.flame.menu;
+package pl.flame.menu.menu;
 
 import lombok.Getter;
 import lombok.Setter;
+import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
+import java.util.List;
 
 public class FlameMenu implements InventoryHolder {
 
-    @Getter private final String title;
+    @Getter private final Component title;
     @Getter private final int rows;
-    @Getter private final boolean disableAllInteractions;
+    @Getter private final boolean disableInteractions;
     @Getter private final FlameMenuFiller filler;
     private Inventory inventory;
 
@@ -25,17 +25,17 @@ public class FlameMenu implements InventoryHolder {
     @Getter
     private Map<Integer, FlameItem> menuItems;
 
-    public FlameMenu(@NotNull String title, int rows, boolean disableAllInteractions) {
+    public FlameMenu(@NotNull Component title, int rows, boolean disableInteractions) {
         this.title = title;
         this.rows = rows;
-        this.disableAllInteractions = disableAllInteractions;
+        this.disableInteractions = disableInteractions;
         this.filler = new FlameMenuFiller(this);
         this.inventory = Bukkit.createInventory(this, this.getRows() * 9, title);
         this.menuItems = new HashMap<>();
     }
 
     public FlameMenu clone() {
-        FlameMenu flameMenu = new FlameMenu(this.title, this.rows, this.disableAllInteractions);
+        FlameMenu flameMenu = new FlameMenu(this.title, this.rows, this.disableInteractions);
         this.menuItems.forEach((key, value) -> flameMenu.getMenuItems().put(key, value));
         return flameMenu;
     }
@@ -92,7 +92,7 @@ public class FlameMenu implements InventoryHolder {
         }
     }
 
-    public void updateTitle(@NotNull String title) {
+    public void updateTitle(@NotNull Component title) {
         Inventory updated = Bukkit.createInventory(this, this.getRows() * 9, title);
         updated.setContents(this.inventory.getContents());
         this.inventory = updated;

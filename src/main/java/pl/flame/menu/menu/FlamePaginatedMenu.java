@@ -1,10 +1,13 @@
-package pl.flame.menu;
+package pl.flame.menu.menu;
 
 import lombok.Getter;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.TextComponent;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import pl.flame.menu.Flame;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,15 +16,19 @@ import java.util.UUID;
 public class FlamePaginatedMenu {
 
     @Getter private final FlameMenu template;
-
-    private FlameMenu currentPage;
+    @Getter private final Component nextPageDoesNotExist;
+    @Getter private final Component previousPageDoesNotExist;
 
     private final Map<Integer, FlameMenu> menusByPages;
     private final Map<FlameMenu, Integer> pagesByMenus;
     private final Map<UUID, Integer> pageViewers;
 
-    public FlamePaginatedMenu(@NotNull FlameMenu template) {
+    private FlameMenu currentPage;
+
+    public FlamePaginatedMenu(@NotNull FlameMenu template, Component nextPageDoesNotExist, Component previousPageDoesNotExist) {
         this.template = template;
+        this.nextPageDoesNotExist = nextPageDoesNotExist;
+        this.previousPageDoesNotExist = previousPageDoesNotExist;
         this.menusByPages = new HashMap<>();
         this.pagesByMenus = new HashMap<>();
         this.pageViewers = new HashMap<>();
@@ -43,7 +50,7 @@ public class FlamePaginatedMenu {
             int nextPage = this.pageViewers.getOrDefault(humanEntity.getUniqueId(), 0) + 1;
 
             if (this.menusByPages.size() <= nextPage) {
-                humanEntity.sendMessage(FlameText.parse("&cNastępna strona nie istnieje!"));
+                humanEntity.sendMessage(this.nextPageDoesNotExist);
                 return;
             }
 
@@ -60,7 +67,7 @@ public class FlamePaginatedMenu {
             int previousPage = this.pageViewers.getOrDefault(humanEntity.getUniqueId(), 0) - 1;
 
             if (0 > previousPage) {
-                humanEntity.sendMessage(FlameText.parse("&cPoprzednia strona nie istnieje!"));
+                humanEntity.sendMessage(this.previousPageDoesNotExist);
                 return;
             }
 
@@ -83,9 +90,15 @@ public class FlamePaginatedMenu {
     }
 
     public void refreshPagesTitle() {
-        this.menusByPages.values().forEach(flameMenu -> flameMenu.updateTitle(flameMenu.getTitle()
-                .replace("{PAGE}", String.valueOf(this.pagesByMenus.get(flameMenu) + 1))
-                .replace("{MAX_PAGE}", String.valueOf(this.menusByPages.size()))));
+        this.menusByPages.values().forEach(flameMenu -> {
+            TextComponent title = (TextComponent) flameMenu.getTitle();
+            String titleString = title.content();
+            titleString = titleString
+                    .replace("{PAGE}", String.valueOf(this.pagesByMenus.get(flameMenu) + 1))
+                    .replace("{MAX_PAGE}", String.valueOf(this.menusByPages.size()));
+
+            flameMenu.updateTitle(Flame.textFormatter().parse(titleString));
+        });
     }
 
     public void addItem(@NotNull FlameItem flameItem) {

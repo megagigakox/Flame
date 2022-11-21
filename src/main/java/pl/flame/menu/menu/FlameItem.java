@@ -1,4 +1,4 @@
-package pl.flame.menu;
+package pl.flame.menu.menu;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
