@@ -1,6 +1,7 @@
 package pl.flame.framework;
 
 import org.bukkit.plugin.Plugin;
+import org.bukkit.plugin.PluginManager;
 import org.jetbrains.annotations.NotNull;
 import pl.flame.framework.menu.*;
 import pl.flame.framework.text.FlameTextBuilder;
@@ -11,9 +12,8 @@ public class Flame {
     private static FlameTextFormatter FLAME_TEXT_FORMATTER;
 
     public static void register(@NotNull Plugin plugin, @NotNull FlameTextFormatter flameTextFormatter) {
-        plugin.getServer()
-                .getPluginManager()
-                .registerEvents(new FlameMenuListener(), plugin);
+        PluginManager pluginManager = plugin.getServer().getPluginManager();
+        pluginManager.registerEvents(new FlameMenuListener(), plugin);
 
         FLAME_TEXT_FORMATTER = flameTextFormatter;
     }
