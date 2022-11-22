@@ -1,7 +1,7 @@
 # Flame
-Simple framework to creating inventories in a simple way.
+Small framework to creating inventories in a simple way.
 
-## Register flame
+## Register
 
 With MiniMessage:
 ```java
